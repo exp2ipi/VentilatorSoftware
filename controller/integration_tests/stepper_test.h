@@ -1,4 +1,13 @@
-// This test rotates a stepper clockwise at a predefined rate and steps
+
+// Summary:
+//      This test rotates a stepper clockwise at a predefined rate and steps
+//
+// How to run:
+//      pio run -e int-test-solenoid --target upload
+//
+// Automation:
+//      TBD - which python script to run?
+//
 
 #include "hal.h"
 #include "stepper.h"

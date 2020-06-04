@@ -1,12 +1,4 @@
-// Summary:
-//      This test ramps the blower up and down repeatedly
-//
-// How to run:
-//      pio run -e int-test-blower --target upload
-//
-// Automation:
-//      TBD - which python script to run?
-//
+// This is just a placeholder. HAL needs further work for this to function
 
 #include "hal.h"
 
@@ -23,7 +15,7 @@ void run_test() {
   float step = initial_step;
 
   while (true) {
-    Hal.analogWrite(PwmPin::BLOWER, fan_power);
+    Hal.analogWrite(PwmPin::SPEAKER, fan_power);
     Hal.delay(milliseconds(delay_ms));
 
     Hal.watchdog_handler();
