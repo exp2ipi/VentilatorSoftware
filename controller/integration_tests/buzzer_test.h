@@ -3,7 +3,7 @@
 //      This test plays buzzer at various volumes
 //
 // How to run:
-//      pio run -e int-test-speaker --target upload
+//      pio run -e int-test-buzzer --target upload
 //
 // Automation:
 //      TBD - which python script to run?

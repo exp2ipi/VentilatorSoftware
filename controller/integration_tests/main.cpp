@@ -8,8 +8,8 @@
 #include "stepper_test.h"
 #elif PINCH_VALVE_TEST
 #include "pinch_valve_test.h"
-#elif SPEAKER_TEST
-#include "speaker_test.h"
+#elif BUZZER_TEST
+#include "buzzer_test.h"
 #endif
 
 int main() { run_test(); }

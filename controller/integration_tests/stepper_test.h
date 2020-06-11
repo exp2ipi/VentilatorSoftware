@@ -21,7 +21,7 @@ void run_test() {
   Hal.init();
 
   // Configure stepper
-  StepMotor *stepper_motor = StepMotor::GetStepper(0);
+  StepMotor *stepper_motor = StepMotor::GetStepper(1);
   stepper_motor->SetAmpAll(0.1f);
   stepper_motor->SetMaxSpeed(100.0f);
   stepper_motor->SetAccel(100.0f / 0.1f);
