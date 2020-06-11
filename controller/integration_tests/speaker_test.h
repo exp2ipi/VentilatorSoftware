@@ -1,34 +1,50 @@
-// This is just a placeholder. HAL needs further work for this to function
 
+// Summary:
+//      This test plays buzzer at various volumes
+//
+// How to run:
+//      pio run -e int-test-speaker --target upload
+//
+// Automation:
+//      TBD - which python script to run?
+//
 #include "hal.h"
 
 // test parameters
-static constexpr int64_t delay_ms{10};
-static constexpr float fan_min{0.0f};
-static constexpr float fan_max{200.0f / 255.0f};
-static constexpr float initial_step{0.002f};
+static constexpr int64_t delay_ms{1000};
+static constexpr float volume_min{0.0f};
+static constexpr float volume_max{1.0f};
+static constexpr float initial_step{0.1f};
 
 void run_test() {
   Hal.init();
 
-  float fan_power = fan_min;
+  float volume = volume_min;
   float step = initial_step;
 
+  bool buzzer_on{false};
+
   while (true) {
-    Hal.analogWrite(PwmPin::SPEAKER, fan_power);
+    if (buzzer_on) {
+      Hal.BuzzerOn();
+    } else {
+      Hal.BuzzerOff();
+    }
+
     Hal.delay(milliseconds(delay_ms));
 
-    Hal.watchdog_handler();
-
-    fan_power += step;
-    if (fan_power >= fan_max) {
-      // switch to ramp-down state
-      fan_power = fan_max;
-      step = -step;
-    } else if (fan_power <= fan_min) {
-      // switch to ramp-up state
-      fan_power = fan_min;
-      step = -step;
+    buzzer_on = !buzzer_on;
+    if (buzzer_on) {
+      volume += step;
+      if (volume >= volume_max) {
+        // switch to ramp-down state
+        volume = volume_max;
+        step = -step;
+      } else if (volume <= volume_min) {
+        // switch to ramp-up state
+        volume = volume_min;
+        step = -step;
+      }
     }
   }
 }
